@@ -78,6 +78,11 @@ input[type="time"] {
   background-color: #c10059;
   color: white;  
 }
+.button.restar,
+.button.restar:hover {
+  background-color: gray;
+  color: black;  
+}
 .alerta-error {
   background-color: white;
   color: red;

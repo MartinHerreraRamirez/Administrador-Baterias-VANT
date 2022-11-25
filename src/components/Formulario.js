@@ -8,7 +8,8 @@ const Formulario = ({nuevoDato}) => {
         marca: '',
         modelo: '',
         serie: '',
-        fecha: ''
+        fecha: '',
+        ciclos: ''
     })
 
     const [ error, setError ] = useState(false)
@@ -18,20 +19,19 @@ const Formulario = ({nuevoDato}) => {
             [e.target.name]: e.target.value})
     }
 
-    const { marca, modelo, serie, fecha } = dato
+    const { marca, modelo, serie, fecha, ciclos } = dato
 
     const enviarFormulario = (e) => {
 
         e.preventDefault()
         
-        if(marca.trim() === '' || modelo.trim() === '' || serie.trim() === '' || fecha.trim() === ''){
+        if(marca.trim() === '' || modelo.trim() === '' || serie.trim() === '' || fecha.trim() === '' || ciclos.trim() === ''){
             setError(true)
             return
         }
         setError(false)
 
         dato.id = v4()
-        console.log(dato)
 
         nuevoDato(dato)
 
@@ -39,7 +39,8 @@ const Formulario = ({nuevoDato}) => {
             marca: '',
             modelo: '',
             serie: '',
-            fecha: ''
+            fecha: '',
+            ciclos: ''
         })
 
 
@@ -47,11 +48,14 @@ const Formulario = ({nuevoDato}) => {
 
     return (  
         <Fragment>
+
             <h3>Ingrese los Datos</h3>
+
             {error
             ? <p className='alerta-error'>Complete todos los campos</p>
             : null
             }
+
             <form
                 onSubmit={enviarFormulario}
             >
@@ -61,7 +65,7 @@ const Formulario = ({nuevoDato}) => {
                     name='marca'
                     value={marca}
                     className='u-full-width'
-                    placeholder='Ingrese la Marca'
+                    placeholder='Marca'
                     onChange={leerCampos}
                 />
 
@@ -71,7 +75,7 @@ const Formulario = ({nuevoDato}) => {
                     name='modelo'
                     value={modelo}
                     className='u-full-width'
-                    placeholder='Ingrese el Modelo'
+                    placeholder='Modelo'
                     onChange={leerCampos}
                 />
 
@@ -81,24 +85,36 @@ const Formulario = ({nuevoDato}) => {
                     name='serie'
                     value={serie}
                     className='u-full-width'
-                    placeholder='Ingrese el Numero de Serie'
+                    placeholder='Numero de Serie'
                     onChange={leerCampos}
                 />
 
-                <label>Fecha:</label>
+                <label>Ciclos de Carga:</label>
+                <input 
+                    type='number'
+                    name='ciclos'
+                    value={ciclos}
+                    className='u-full-width'
+                    placeholder='Cantidad de Ciclos de Carga'
+                    onChange={leerCampos}
+                />
+
+                <label>Fecha de Alta:</label>
                 <input 
                     type='date'
                     name='fecha'
                     value={fecha}
                     className='u-full-width'
                     onChange={leerCampos}                    
-                />
+                />             
 
                 <button
                     type='submit'
                     className='u-full-width button-primary'
                 >Agregar Bateria</button>
+
             </form>
+
         </Fragment>   
     );
 }

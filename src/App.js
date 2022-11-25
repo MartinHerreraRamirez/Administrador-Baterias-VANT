@@ -22,6 +22,10 @@ function App(){
     }
   }, [datos] )
 
+ 
+
+
+
   const nuevoDato = (dato) =>{
     setDatos([
       ...datos,
@@ -41,7 +45,7 @@ function App(){
         <div className='row container'>
           <div className='u-full-width'>
             <Formulario 
-              nuevoDato={nuevoDato}
+              nuevoDato={nuevoDato}              
             />
           </div>
 
